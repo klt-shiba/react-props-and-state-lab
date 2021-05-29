@@ -44,9 +44,17 @@ class App extends React.Component {
     return e
   }
 
-  // onAdoptPet = (e) => {
-  //   pets
-  // }
+  onAdoptPet = (e) => {
+    const petsArray = this.state.pets
+    const adoptedPet = petsArray.find((el) => {
+      return el.id === e
+    })
+
+    adoptedPet.isAdopted = true 
+    console.log(adoptedPet)
+
+
+  }
   
   render() {
     return (

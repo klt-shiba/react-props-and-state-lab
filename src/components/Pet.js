@@ -2,17 +2,27 @@ import React from 'react'
 
 class Pet extends React.Component {
   
+  constructor() {
+    super()
+    this.state = {
+      id: ""
+    }
+  }
   
+
+
   showSex = (e) => {
     return (e === "male") ? <div>♂</div> : <div>♀</div>
   }
 
-  determineAdoption = e => {
-    return (e === true) ? <button className="ui disabled button">Already adopted</button> : <button className="ui primary button" onClick = {this.onClick}>Adopt pet</button>
+  determineAdoption = (e, id) => {
+
+    return (e === true) ? <button className="ui disabled button">Already adopted</button> : <button className="ui primary button" onClick = {this.returnPet} value= {id}>Adopt pet</button>
   }
   
-  onClick = (e) => {
-    console.log(e.target)
+  returnPet = (e) => {
+    const id = e.target.value
+    {this.props.onAdoptPet(id)}
   }
 
   render() {
@@ -38,7 +48,7 @@ class Pet extends React.Component {
               </div>
             </div>
             <div className="extra content">
-              {this.determineAdoption(el.isAdopted)}
+              {this.determineAdoption(el.isAdopted, el.id)}
             </div>
           </div>
         )
